@@ -2,7 +2,7 @@ SSH execute with password
 =========================
 No need to confirm fingerprint,
 no need to type password in keyboard,
-just put password as argument to execute command via SSH,
+just put password as command-line argument to execute command via SSH,
 suit for using in scripts.
 
 
@@ -53,3 +53,8 @@ SLF4J
 -----
 user manual  
 https://www.slf4j.org/manual.html
+
+java.util.logging
+-----------------
+config file  
+http://www.javapractices.com/topic/TopicAction.do?Id=143
