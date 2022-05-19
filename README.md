@@ -1,5 +1,5 @@
-SSH execute with password
-=========================
+SSH execute command with password
+=================================
 No need to confirm fingerprint,
 no need to type password in keyboard,
 just put password as command-line argument to execute command via SSH,
