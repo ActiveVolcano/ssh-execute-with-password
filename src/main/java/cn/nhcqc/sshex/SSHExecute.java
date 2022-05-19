@@ -49,7 +49,7 @@ public class SSHExecute {
 	final static int PORT_MIN = 1, PORT_MAX = 0xFFFF, PORT_DEFAULT = 22, MS_SEC = 1000;
 	final static Charset CHARSET_DEFAULT = StandardCharsets.UTF_8;
 	final static PrintStream STDOUT = System.out, STDERR = System.err;
-	final static private Logger logger = LoggerFactory.getLogger(SSHExecute.class);
+	final static private Logger logger = LoggerFactory.getLogger (SSHExecute.class);
 
 	//------------------------------------------------------------------------
 	public static void main (final String[] args) {

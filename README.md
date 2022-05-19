@@ -21,11 +21,11 @@ ssh-execute -l alibaba --password OpenSesame -p 22 192.168.0.1 "ls -l --color /t
 
 Specify connection timeout in seconds:
 ```bat
-ssh-execute -o ConnectTimeout=3 --password OpenSesame alibaba@192.168.0.1 "ls -l --color /tmp"
+ssh-execute -o ConnectTimeout=10 --password OpenSesame alibaba@192.168.0.1 "ls -l --color /tmp"
 ```
 or using a new option name to keep the style:
 ```bat
-ssh-execute --connect-timeout 3 --password OpenSesame alibaba@192.168.0.1 "ls -l --color /tmp"
+ssh-execute --connect-timeout 10 --password OpenSesame alibaba@192.168.0.1 "ls -l --color /tmp"
 ```
 
 Get full command-line usage:
