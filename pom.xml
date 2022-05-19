@@ -56,8 +56,8 @@
 						<configuration>
 							<fileSets>
 								<fileSet>
-									<sourceFile>src/main/java/cn/nhcqc/sshex/SSHExecuteWithPassword.java</sourceFile>
-									<destinationFile>${project.build.directory}/SSHExecuteWithPassword.java</destinationFile>
+									<sourceFile>src/main/java/cn/nhcqc/sshex/SSHExecute.java</sourceFile>
+									<destinationFile>${project.build.directory}/SSHExecute.java</destinationFile>
 								</fileSet>
 								<fileSet>
 									<sourceFile>ssh-execute.bat</sourceFile>

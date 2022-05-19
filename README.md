@@ -8,6 +8,7 @@ suit for using in scripts.
 
 Usage as standalone run
 =======================
+0. Install Java 11 or above.
 1. Download, unzip from the Releases page.
 2. Run in command prompt, arguments are same as the standard ssh command, plus --password option, like
 ```bat
@@ -38,9 +39,24 @@ Usage as Java package
 (Under construction...)
 
 
+License
+==============
+LGPL-2.1 (GNU Lesser General Public License).
+See file LICENSE for details.
+
+
 How to compile
 ==============
-(Under construction...)
+0. Install Apache Maven 3
+1. Run
+```bat
+mvn package
+```
+2. In the target folder, those listed below are for standalone run:
+   + *.bat
+   + *.java
+   + *.ini
+   + lib
 
 
 Development Notes

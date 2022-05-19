@@ -20,11 +20,11 @@ import net.schmizz.sshj.transport.TransportException;
 import net.schmizz.sshj.transport.verification.FingerprintVerifier;
 
 /**
- * SSH Execute with Password
+ * SSH execute command with password
  *
  * @author CHEN Qingcan
  */
-public class SSHExecuteWithPassword {
+public class SSHExecute {
 
 	private static class Config {
 		String  host;
@@ -49,12 +49,18 @@ public class SSHExecuteWithPassword {
 	final static int PORT_MIN = 1, PORT_MAX = 0xFFFF, PORT_DEFAULT = 22, MS_SEC = 1000;
 	final static Charset CHARSET_DEFAULT = StandardCharsets.UTF_8;
 	final static PrintStream STDOUT = System.out, STDERR = System.err;
-	final static private Logger logger = LoggerFactory.getLogger(SSHExecuteWithPassword.class);
+	final static private Logger logger = LoggerFactory.getLogger(SSHExecute.class);
 
 	//------------------------------------------------------------------------
 	public static void main (final String[] args) {
 		AnsiConsole.systemInstall ();
-		try { System.exit (run (parseArgs (args))); }
+		try {
+			var sshexe = new SSHExecute   ();
+			var config = sshexe.parseArgs (args);
+			var status = sshexe.run       (config);
+			System.exit (status);
+		}
+
 		catch (Exception e) {
 			STDERR.println (e.getMessage ());
 //			logger.error   ("", e);
@@ -62,7 +68,7 @@ public class SSHExecuteWithPassword {
 		}
 	}
 
-	public static int run (final Config config)
+	public int run (final Config config)
 	throws IOException {
 		assert config != null;
 		logger.trace ("config: {}", config);
@@ -92,7 +98,7 @@ public class SSHExecuteWithPassword {
 	}
 
 	//------------------------------------------------------------------------
-	private static SSHClient connect (final Config config)
+	private SSHClient connect (final Config config)
 	throws IOException {
 		assert config != null;
 		var ssh = new SSHClient ();
@@ -122,7 +128,7 @@ public class SSHExecuteWithPassword {
 	}
 
 	//------------------------------------------------------------------------
-	private static SSHClient setSSHtimeout (final SSHClient ssh, final Config config) {
+	private SSHClient setSSHtimeout (final SSHClient ssh, final Config config) {
 		assert ssh != null && config != null;
 		if (config.timeoutConnect > 0) {
 			ssh.setConnectTimeout (config.timeoutConnect * MS_SEC);
@@ -132,7 +138,7 @@ public class SSHExecuteWithPassword {
 	}
 
 	//------------------------------------------------------------------------
-	private static Config parseArgs (final String[] args) {
+	private Config parseArgs (final String[] args) {
 		var options = new Options ();
 		var optionm = buildOptions (options);
 		try {
@@ -153,7 +159,7 @@ public class SSHExecuteWithPassword {
 	/**
 	 * @param options [out]
 	 */
-	private static Map<String, Option> buildOptions (final Options options) {
+	private Map<String, Option> buildOptions (final Options options) {
 		var map = new HashMap<String,Option>();
 		map.put ("charset",
 			Option.builder ()
@@ -208,7 +214,7 @@ public class SSHExecuteWithPassword {
 	}
 
 	//------------------------------------------------------------------------
-	private static void parseOptions (final CommandLine cmd, final Map<String, Option> optionm, final Config parsed)
+	private void parseOptions (final CommandLine cmd, final Map<String, Option> optionm, final Config parsed)
 	throws ParseException {
 		if (cmd.hasOption (optionm.get ("help")))
 			throw new ParseException ("");
@@ -246,7 +252,7 @@ public class SSHExecuteWithPassword {
 	}
 
 	//------------------------------------------------------------------------
-	private static void parseLeftOver (final CommandLine cmd, final Config parsed)
+	private void parseLeftOver (final CommandLine cmd, final Config parsed)
 	throws ParseException {
 		assert cmd != null && parsed != null;
 		final int n = cmd.getArgs ().length;
@@ -263,7 +269,7 @@ public class SSHExecuteWithPassword {
 	}
 
 	//------------------------------------------------------------------------
-	private static void parseCheck (final Config parsed) throws ParseException {
+	private void parseCheck (final Config parsed) throws ParseException {
 		if (parsed.host     == null)
 			throw new ParseException ("host required");
 		if (! Range.between (PORT_MIN, PORT_MAX).contains (parsed.port))
@@ -277,15 +283,17 @@ public class SSHExecuteWithPassword {
 	}
 
 	//------------------------------------------------------------------------
-	private static void parseError (final Options options, final ParseException e) {
+	private void parseError (final Options options, final ParseException e) {
 		if (! e.getMessage ().isEmpty ()) STDERR.println (e.getMessage ());
 		usage (options);
 		System.exit (1);
 	}
 
 	//------------------------------------------------------------------------
-	private static void usage (final Options options) {
-		String cmd = "ssh-password [user@]host command", header = "\nSSH Execute with Password\n\n", footer = "";
+	private void usage (final Options options) {
+		String cmd = "ssh-password [user@]host command",
+			header = "\nSSH execute command with password\n\n",
+			footer = "";
 		boolean usage = true;
 		new HelpFormatter().printHelp (cmd, header, options, footer, usage);
 	}
