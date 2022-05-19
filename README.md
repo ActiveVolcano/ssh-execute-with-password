@@ -6,8 +6,35 @@ just put password as command-line argument to execute command via SSH,
 suit for using in scripts.
 
 
-How to use
-==========
+Usage as standalone run
+=======================
+1. Download, unzip from the Releases page.
+2. Run in command prompt, arguments are same as the standard ssh command, plus --password option, like
+```bat
+ssh-execute --password OpenSesame alibaba@192.168.0.1 "ls -l --color /tmp"
+```
+or
+```bat
+ssh-execute -l alibaba --password OpenSesame -p 22 192.168.0.1 "ls -l --color /tmp"
+```
+
+Specify connection timeout in seconds:
+```bat
+ssh-execute -o ConnectTimeout=3 --password OpenSesame alibaba@192.168.0.1 "ls -l --color /tmp"
+```
+or using a new option name to keep the style:
+```bat
+ssh-execute --connect-timeout 3 --password OpenSesame alibaba@192.168.0.1 "ls -l --color /tmp"
+```
+
+Get full command-line usage:
+```bat
+ssh-execute --help
+```
+
+
+Usage as Java package
+=====================
 (Under construction...)
 
 
