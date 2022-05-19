@@ -8,7 +8,7 @@
 	<version>0.1.220517</version>
 	<packaging>jar</packaging>
 
-	<name>SSH execute with password</name>
+	<name>SSH execute command with password</name>
 	<url>http://nhcqc.cn</url>
 
 	<properties>
@@ -25,6 +25,56 @@
 					<source>11</source>
 					<target>11</target>
 				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<version>3.3.0</version>
+				<executions>
+					<execution>
+						<id>copy-dependencies</id>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>copy-dependencies</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${project.build.directory}/lib</outputDirectory>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>com.coderplus.maven.plugins</groupId>
+				<artifactId>copy-rename-maven-plugin</artifactId>
+				<version>1.0.1</version>
+				<executions>
+					<execution>
+						<id>copy</id>
+						<phase>package</phase>
+						<goals>
+							<goal>copy</goal>
+						</goals>
+						<configuration>
+							<fileSets>
+								<fileSet>
+									<sourceFile>src/main/java/cn/nhcqc/sshex/SSHExecuteWithPassword.java</sourceFile>
+									<destinationFile>${project.build.directory}/SSHExecuteWithPassword.java</destinationFile>
+								</fileSet>
+								<fileSet>
+									<sourceFile>ssh-execute.bat</sourceFile>
+									<destinationFile>${project.build.directory}/ssh-execute.bat</destinationFile>
+								</fileSet>
+								<fileSet>
+									<sourceFile>standalone-run-lib/slf4j-jdk14-1.7.32.jar</sourceFile>
+									<destinationFile>${project.build.directory}/lib/slf4j-jdk14-1.7.32.jar</destinationFile>
+								</fileSet>
+								<fileSet>
+									<sourceFile>java.util.logging.ini</sourceFile>
+									<destinationFile>${project.build.directory}/java.util.logging.ini</destinationFile>
+								</fileSet>
+							</fileSets>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
@@ -47,8 +97,13 @@
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-jdk14</artifactId>
-			<version>1.7.36</version>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.7.32</version>
+		</dependency>
+		<dependency>
+			<groupId>org.fusesource.jansi</groupId>
+			<artifactId>jansi</artifactId>
+			<version>2.4.0</version>
 		</dependency>
 	</dependencies>
 

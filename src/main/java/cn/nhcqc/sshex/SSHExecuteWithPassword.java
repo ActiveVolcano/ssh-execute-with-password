@@ -8,6 +8,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.cli.*;
 import org.apache.commons.lang3.math.NumberUtils;
+import org.fusesource.jansi.AnsiConsole;
 import org.apache.commons.lang3.Range;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -52,6 +53,7 @@ public class SSHExecuteWithPassword {
 
 	//------------------------------------------------------------------------
 	public static void main (final String[] args) {
+		AnsiConsole.systemInstall ();
 		try { System.exit (run (parseArgs (args))); }
 		catch (Exception e) {
 			STDERR.println (e.getMessage ());
