@@ -5,9 +5,13 @@ no need to type password in keyboard,
 just put password as command-line argument to execute command via SSH,
 suit for using in scripts.
 
+By now only those output-only commands are supported, such as ls, df, vmstat.
 
 Usage as standalone run
 =======================
+
+Basic options similar to the standard ssh client
+----------------------------------------------
 0. Install Java 11 or above.
 1. Download, unzip from the Releases page.
 2. Run in command prompt, arguments are same as the standard ssh command, plus --password option, like
@@ -23,12 +27,21 @@ Specify connection timeout in seconds:
 ```bat
 ssh-execute -o ConnectTimeout=10 --password OpenSesame alibaba@192.168.0.1 "ls -l --color /tmp"
 ```
-or using a new option name to keep the style:
+
+Extra options
+-------------
+Specify command timeout in seconds:
+```bat
+ssh-execute --command-timeout 10 --password OpenSesame alibaba@192.168.0.1 "ls -l --color /tmp"
+```
+
+Specify connection timeout in seconds with a new option name to keep the style:
 ```bat
 ssh-execute --connect-timeout 10 --password OpenSesame alibaba@192.168.0.1 "ls -l --color /tmp"
 ```
 
-Get full command-line usage:
+Full command-line usage
+-----------------------
 ```bat
 ssh-execute --help
 ```
