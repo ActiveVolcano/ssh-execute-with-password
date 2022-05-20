@@ -19,8 +19,8 @@ public class SSHExecuteTest {
 		config.username = "alibaba";
 		config.password = "OpenSesame";
 		config.command  = "ls -l --color /tmp";
-		config.timeoutConnect = 10;
-		config.timeoutCommand = 10;
+		config.timeoutConnect = 3;
+		config.timeoutCommand = 3;
 		try {
 			int exit    = new SSHExecute ().run (config);
 			OUT.printf ("%n(exit status = %d)%n", exit);

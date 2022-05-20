@@ -64,6 +64,7 @@ int exit   = new SSHExecute ().run (config);
 License
 ==============
 LGPL-2.1 (GNU Lesser General Public License).
+
 See file LICENSE for details.
 
 
