@@ -5,7 +5,7 @@
 
 	<groupId>cn.nhcqc.sshex</groupId>
 	<artifactId>ssh-execute-with-password</artifactId>
-	<version>0.1.220517</version>
+	<version>0.2.220517</version>
 	<packaging>jar</packaging>
 
 	<name>SSH execute command with password</name>
@@ -25,6 +25,31 @@
 					<source>11</source>
 					<target>11</target>
 				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>3.4.0</version>
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>3.2.1</version>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<goals>
+							<goal>jar-no-fork</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 			<plugin>
 				<artifactId>maven-dependency-plugin</artifactId>
@@ -81,6 +106,12 @@
 
 	<dependencies>
 		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-engine</artifactId>
+			<version>5.8.2</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
 			<version>3.12.0</version>
@@ -106,5 +137,13 @@
 			<version>2.4.0</version>
 		</dependency>
 	</dependencies>
+
+	<distributionManagement>
+		<repository>
+			<id>github</id>
+			<name>GitHub ActiveVolcano Apache Maven Packages</name>
+			<url>https://maven.pkg.github.com/ActiveVolcano/ssh-execute-with-password</url>
+		</repository>
+	</distributionManagement>
 
 </project>

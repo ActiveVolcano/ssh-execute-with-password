@@ -26,16 +26,17 @@ import net.schmizz.sshj.transport.verification.FingerprintVerifier;
  */
 public class SSHExecute {
 
-	private static class Config {
-		String  host;
-		Integer port            = PORT_DEFAULT;
-		String  username;
-		String  password;
-		String  command;
+	//------------------------------------------------------------------------
+	public static class Config {
+		public String   host;
+		public Integer  port            = PORT_DEFAULT;
+		public String   username;
+		public String   password;
+		public String   command;
 
-		Integer timeoutConnect  = 0;
-		Integer timeoutCommand  = 0;
-		Charset charset         = CHARSET_DEFAULT;
+		public Integer  timeoutConnect  = 0;
+		public Integer  timeoutCommand  = 0;
+		public Charset  charset         = CHARSET_DEFAULT;
 
 		@Override
 		public String toString () {
@@ -46,13 +47,14 @@ public class SSHExecute {
 		}
 	}
 
+	//------------------------------------------------------------------------
 	final static int PORT_MIN = 1, PORT_MAX = 0xFFFF, PORT_DEFAULT = 22, MS_SEC = 1000;
 	final static Charset CHARSET_DEFAULT = StandardCharsets.UTF_8;
 	final static PrintStream STDOUT = System.out, STDERR = System.err;
 	final static private Logger logger = LoggerFactory.getLogger (SSHExecute.class);
 
 	//------------------------------------------------------------------------
-	public static void main (final String[] args) {
+	public static void main (final String... args) {
 		AnsiConsole.systemInstall ();
 		try {
 			var sshexe = new SSHExecute   ();

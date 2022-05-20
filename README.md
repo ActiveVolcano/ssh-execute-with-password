@@ -49,8 +49,17 @@ ssh-execute --help
 
 Usage as Java package
 =====================
-(Under construction...)
++ In Maven pom.xml:  
+See Packages page.
 
++ In Java code:
+```java
+import cn.nhcqc.sshex.SSHExecute;
+
+var config = new SSHExecute.Config ();
+//  set config field values
+int exit   = new SSHExecute ().run (config);
+```
 
 License
 ==============
