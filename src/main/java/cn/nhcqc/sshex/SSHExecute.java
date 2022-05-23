@@ -110,7 +110,6 @@ public class SSHExecute {
 		try {
 			logger.trace ("connect: {}:{} timeout: {} sec.", config.host, config.port, config.timeoutConnect);
 			setSSHtimeout (ssh, config);
-			ssh.loadKnownHosts ();
 			ssh.connect (config.host, config.port);
 			return ssh;
 		} catch (TransportException e) {
