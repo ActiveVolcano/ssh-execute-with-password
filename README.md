@@ -5,6 +5,9 @@ no need to type password in keyboard,
 just put password as command-line argument to execute command via SSH,
 suit for using in scripts.
 
+Written in Java,
+Run under both Windows and Linux.
+
 By now only those output-only commands are supported, such as ls, df, vmstat.
 
 Usage as standalone run
